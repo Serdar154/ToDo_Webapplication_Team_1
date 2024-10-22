@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Calendar Page</title>
+    <style>
+        /* Body and html elements take full screen */
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+
+        /* Calendar takes 100% of the screen */
+        #calendar {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Ensure custom button has proper styling */
+        .fc-toolbar-chunk {
+        display : flex;
+        justify-content : space-evenly;
+           width: 100%;
+        }
+        .fc-header.toolbar{
+        display : flex;
+        justify-content : space-between;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var calendarEl = document.getElementById('calendar');
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth',
+                headerToolbar: {
+                    left: 'prev,next today', // Navigation buttons on the left
+                    center: 'title dayGridMonth,timeGridWeek', // Title and custom button in the center
+                    right: 'zurückButton' // View buttons on the right
+                },
+                customButtons: {
+                    zurückButton: {
+                        text: 'Zurück zur Startseite',
+                        click: function() {
+                            window.location.href = 'index.html'; // Redirect to homepage
+                        }
+                    }
+                },
+                views: {
+                    dayGridMonth: { // Month view settings
+                        titleFormat: { year: 'numeric', month: '2-digit', day: '2-digit' }
+                    }
+                }
+            });
+            calendar.render();
+        });
+    </script>
+</head>
+<body>
+<div id="calendar"></div>
+</body>
+</html>

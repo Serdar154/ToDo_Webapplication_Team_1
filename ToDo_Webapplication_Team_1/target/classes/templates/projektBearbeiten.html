@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projekt bearbeiten</title>
+</head>
+<body>
+<h1>Projekt bearbeiten</h1>
+<form id="editProjectForm" onsubmit="event.preventDefault(); editProject(projectId);">
+  <label for="title">Titel:</label>
+  <input type="text" id="title" name="title" required>
+  <br>
+  <label for="description">Beschreibung:</label>
+  <textarea id="description" name="description" required></textarea>
+  <br>
+  <button type="submit">Speichern</button>
+</form>
+<button onclick="window.location.href='projektverwaltung.html'">Zurück zur Übersicht</button>
+
+<script>
+  // Extrahiere die ID des Projekts aus der URL
+  const urlParams = new URLSearchParams(window.location.search);
+  const projectId = urlParams.get('id');
+
+  // Funktion zum Laden der Projektdaten
+  async function loadProjectData(id) {
+      try {
+          const response = await fetch(`http://localhost:8080/api/projects/${id}`);
+          if (response.ok) {
+              const project = await response.json();
+              document.getElementById('title').value = project.title;
+              document.getElementById('description').value = project.description;
+          } else {
+              alert('Projekt nicht gefunden');
+          }
+      } catch (error) {
+          console.error('Fehler beim Laden des Projekts:', error);
+          alert('Fehler beim Laden des Projekts');
+      }
+  }
+
+  // Funktion zum Bearbeiten des Projekts
+  async function editProject(id) {
+      const updatedProject = {
+          title: document.getElementById('title').value,
+          description: document.getElementById('description').value
+      };
+
+      try {
+          const response = await fetch(`http://localhost:8080/api/projects/${id}`, {
+              method: 'PUT',
+              headers: {
+                  'Content-Type': 'application/json',
+              },
+              body: JSON.stringify(updatedProject)
+          });
+          if (response.ok) {
+              alert('Projekt erfolgreich aktualisiert!');
+              window.location.href = 'projektverwaltung.html'; // Weiterleitung zur Übersicht
+          } else {
+              alert('Fehler beim Aktualisieren des Projekts');
+          }
+      } catch (error) {
+          console.error('Fehler beim Bearbeiten des Projekts:', error);
+          alert('Fehler beim Bearbeiten des Projekts');
+      }
+  }
+
+  // Lade die Projektdaten, sobald die Seite geladen ist
+  document.addEventListener('DOMContentLoaded', () => {
+      if (projectId) {
+          loadProjectData(projectId);
+      } else {
+          alert('Keine Projekt-ID angegeben');
+          window.location.href = 'projektverwaltung.html'; // Zurück zur Übersicht, wenn keine ID vorhanden ist
+      }
+  });
+</script>
+</body>
+</html>

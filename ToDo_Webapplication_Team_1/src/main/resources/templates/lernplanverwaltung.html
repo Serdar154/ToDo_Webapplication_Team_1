@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lernpläne</title>
+</head>
+
+<style>
+    .header {
+        height: 3rem;
+        background-image: -moz-linear-gradient(green, rgb(26, 245, 179));
+        text-align: center;
+        margin: 0%;
+    }
+
+    .oberer-div, .unterer-div {
+        margin-top: 5em;
+        background-color: rgb(255, 255, 255);
+        display: flex;
+        justify-content: space-evenly;
+    }
+
+    .d1 , .d2 , .d3 , .d4  {
+        background-color: #3498db; /* Ursprüngliche Farbe */
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 1s ease, color 10s ease;
+    }
+    .d1:hover, .d2:hover, .d3:hover, .d4:hover {
+        background-color: #73ff00; /* Farbe bei Hover */
+        color: #f10606; /* Textfarbe bei Hover */
+    }
+
+    /* Tabelle Styling */
+    table {
+        width: 80%;
+        margin: 2em auto;
+        border-collapse: collapse;
+        text-align: left;
+    }
+
+    th, td {
+        padding: 12px;
+        border: 1px solid #dddddd;
+    }
+
+    th {
+        background-color: #3498db;
+        color: white;
+    }
+
+    td {
+        background-color: #f9f9f9;
+    }
+
+    .crud-btn, .dashboard-btn {
+        background-color: #3498db;
+        color: white;
+        padding: 5px 10px;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+    }
+
+    .crud-btn:hover, .dashboard-btn:hover {
+        background-color: #ff5733;
+    }
+
+    .dashboard {
+        width: 80%;
+        margin: 2em auto;
+        text-align: left;
+    }
+
+    .dashboard-title {
+        font-size: 1.5em;
+        margin-bottom: 1em;
+    }
+
+    .task-list {
+        background-color: #f9f9f9;
+        padding: 1em;
+        border: 1px solid #dddddd;
+    }
+</style>
+
+<body>
+<div class="header">
+    <h1>Lernpläne</h1>
+</div>
+
+<div class="main-div">
+    <div class="oberer-div">
+        <a href="index.html"><div class="d1"><h1>Hauptmenü</h1></div></a>
+        <a href="lernplaErstellen.html"><div class="d2"><h1>Neuer Lernplan</h1></div></a>
+    </div>
+</div>
+
+<!-- Tabelle zur Anzeige der Lernpläne -->
+<table>
+    <thead>
+    <tr>
+        <th>Lernplan ID</th>
+        <th>Lernplanname</th>
+        <th>Beschreibung</th>
+        <th>Aktionen</th>
+    </tr>
+    </thead>
+    <tbody id="lernplanTable">
+    <!-- Beispiel-Lernplan (Dynamisch hinzufügen) -->
+    <tr>
+        <td>1</td>
+        <td><a href="lernplan1.html">Lernplan A</a></td>
+        <td>Beschreibung von Lernplan A</td>
+        <td>
+            <button class="crud-btn" onclick="editLernplan(1)">Bearbeiten</button>
+            <button class="crud-btn" onclick="deleteLernplan(1)">Löschen</button>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<!-- Dashboard -->
+<div class="dashboard">
+    <div class="dashboard-title">Aufgaben für heute und diese Woche</div>
+    <div class="task-list">
+        <p><strong>Aufgabe 1:</strong> Mathe lernen - <em>Start: 21.10.2024</em> - <em>Ende: 23.10.2024</em></p>
+        <p><strong>Aufgabe 2:</strong> Geschichte wiederholen - <em>Start: 20.10.2024</em> - <em>Ende: 24.10.2024</em></p>
+    </div>
+</div>
+
+<!-- JavaScript für CRUD Operationen -->
+<script>
+    function editLernplan(id) {
+        alert('Lernplan ' + id + ' bearbeiten');
+        // Hier könnte ein Formular für die Bearbeitung erscheinen
+    }
+
+    function deleteLernplan(id) {
+        if (confirm('Möchten Sie den Lernplan wirklich löschen?')) {
+            // Code zum Löschen des Lernplans
+            alert('Lernplan ' + id + ' gelöscht');
+        }
+    }
+
+    // Beispiel: Einen neuen Lernplan dynamisch hinzufügen
+    function addLernplan(id, name, description) {
+        const table = document.getElementById('lernplanTable');
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${id}</td>
+            <td><a href="lernplan${id}.html">${name}</a></td>
+            <td>${description}</td>
+            <td>
+                <button class="crud-btn" onclick="editLernplan(${id})">Bearbeiten</button>
+                <button class="crud-btn" onclick="deleteLernplan(${id})">Löschen</button>
+            </td>
+        `;
+        table.appendChild(row);
+    }
+
+    // Beispiel: Neuer Lernplan dynamisch hinzufügen
+    addLernplan(2, 'Lernplan B', 'Beschreibung von Lernplan B');
+</script>
+</body>
+</html>

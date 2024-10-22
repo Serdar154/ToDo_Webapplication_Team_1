@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>to-dos</title>
+</head>
+
+<style>
+
+
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+
+body {
+font-family: Arial, sans-serif;
+background-color: #f4f4f9;
+display: flex;
+justify-content: center;
+align-items: center;
+height: 100vh;
+}
+
+.container {
+width: 70%;
+max-width: 900px;
+background-color: white;
+border-radius: 8px;
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+padding: 20px;
+}
+
+.back-btn {
+background-color: #4CAF50;
+color: white;
+border: none;
+padding: 10px 20px;
+border-radius: 4px;
+cursor: pointer;
+margin-bottom: 20px;
+}
+
+.back-btn:hover {
+background-color: #45a049;
+ transition: all 0.2s ease-in;
+}
+
+.form-container {
+display: flex;
+flex-direction: column;
+}
+
+.description-date-container {
+display: flex;
+justify-content: space-between;
+align-items: flex-start;
+}
+
+
+input[type="text"],
+textarea,
+input[type="date"] {
+width: 100%;
+padding: 10px;
+margin-bottom: 20px;
+border: 2px solid #ccc;
+border-radius: 4px;
+font-size: 16px;
+}
+
+textarea {
+height: 150px;
+resize: none;
+}
+
+.button-group {
+display: flex;
+justify-content: space-between;
+margin-top: 20px;
+background-color: #4CAF50;
+color: white;
+border: solid;
+padding: 10px 20px;
+border-radius: 4px;
+cursor: pointer;
+margin-bottom: 20px;
+}
+.button-group:hover {
+background-color: #45a049;
+}
+
+.save-btn,
+.cancel-btn {
+background-color: #555;
+color: white;
+border: none;
+padding: 10px 20px;
+border-radius: 4px;
+cursor: pointer;
+}
+
+.save-btn:hover {
+background-color: #4CAF50;
+}
+
+.cancel-btn:hover {
+background-color: #f44336;
+}
+table{
+
+
+  }
+
+  }
+  table,th,td{
+
+
+  }
+
+  th.buttons{
+  display: flex;
+  justify-content: space-between;
+  }
+
+.titel-container{
+display: flex;
+
+position: absolute;
+     top: 10%;
+     left: 50%;
+     transform: translate(-50%, -50%);
+     font-size: 3rem;
+     color: #45a049;
+     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+     z-index: 2;
+     font-style: italic;
+     font-weight: bold;
+  }
+
+</style>
+
+<body>
+<div class="titel-container">
+<h1>To Do Liste</h1>
+</div>
+<div class="container">
+  <a href="index.html"><button class="back-btn">zurück</button></a>
+  <a href="to-doErstellen.html"><button class="back-btn">Erstellen</button></a>
+  <div class="form-container">
+    <table>
+     <tr>
+       <th>Titel</th>
+       <th>Beschreibung</th>
+       <th>Action Button</th>
+     </tr>
+
+      <tr>
+        <th>Thema1</th>
+        <th>Beschreibung 1</th>
+        <th class="buttons">
+
+          <button class="button-group">Delete</button>  <button class="button-group">Bearbeiten</button>
+        </th>
+      </tr>
+      <tr>
+        <th>Thema 2</th>
+        <th>Beschreibung 2</th>
+        <th class="buttons">
+          <button class="button-group">Delete</button> <button class="button-group">Bearbeiten</button>
+        </th>
+      </tr>
+      <tr>
+        <th>Software Engineering </th>
+        <th>Wie die Definition schon andeutet, ist Software Engineering mehr als Softwareentwicklung oder Software Asset Management, sondern umfasst auch die Konzeption und Planung von Softwareprojekten sowie deren Organisation und Integration in andere Systeme und Datenstrukturen.</th>
+        <th class="buttons">
+          <button class="button-group">Delete</button> <button class="button-group">Bearbeiten</button>
+        </th>
+      </tr>
+
+
+    </table>
+  </div>
+
+
+</div>
+</body>
+</html>
