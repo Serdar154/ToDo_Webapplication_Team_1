@@ -47,8 +47,8 @@
     }
 
     textarea {
-      resize: none; /* Verhindert manuelles Ändern der Größe */
-      overflow: hidden; /* Verhindert Scrollen */
+      resize: none;
+      overflow: hidden;
     }
 
     button {
@@ -84,7 +84,7 @@
 </head>
 <body>
 <div class="container">
-  <button class="back-button" onclick="window.location.href='projektverwaltung.html'">Zurück zur Projektverwaltung</button>
+  <button class="back-button" onclick="window.location.href='/projektverwaltung'">Zurück zur Projektverwaltung</button>
   <h1>Projekt bearbeiten</h1>
   <form id="editProjectForm" onsubmit="event.preventDefault(); editProject(projectId);">
     <label for="title">Titel:</label>
@@ -96,17 +96,14 @@
 </div>
 
 <script>
-  // Funktion zum Anpassen der Höhe des Textareas
   function adjustTextareaHeight(textarea) {
     textarea.style.height = 'auto';
     textarea.style.height = `${textarea.scrollHeight}px`;
   }
 
-  // Extrahiere die ID des Projekts aus der URL
   const urlParams = new URLSearchParams(window.location.search);
   const projectId = urlParams.get('id');
 
-  // Funktion zum Laden der Projektdaten
   async function loadProjectData(id) {
     try {
       const response = await fetch(`http://localhost:8080/api/projects/${id}`);
@@ -124,7 +121,6 @@
     }
   }
 
-  // Funktion zum Bearbeiten des Projekts
   async function editProject(id) {
     const updatedProject = {
       title: document.getElementById('title').value,
@@ -141,7 +137,7 @@
       });
       if (response.ok) {
         alert('Projekt erfolgreich aktualisiert!');
-        window.location.href = 'projektverwaltung.html';
+        window.location.href = '/projektverwaltung';
       } else {
         alert('Fehler beim Aktualisieren des Projekts');
       }
@@ -151,13 +147,12 @@
     }
   }
 
-  // Lade die Projektdaten, sobald die Seite geladen ist
   document.addEventListener('DOMContentLoaded', () => {
     if (projectId) {
       loadProjectData(projectId);
     } else {
       alert('Keine Projekt-ID angegeben');
-      window.location.href = 'projektverwaltung.html';
+      window.location.href = '/projektverwaltung';
     }
   });
 </script>

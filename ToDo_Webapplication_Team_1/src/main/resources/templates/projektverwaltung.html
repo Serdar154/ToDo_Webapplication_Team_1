@@ -114,9 +114,9 @@
 <div class="container">
     <h1>Projektverwaltung</h1>
     <div class="button-container">
-        <button onclick="window.location.href='projektErstellen.html'">Neues Projekt erstellen</button>
+        <button onclick="window.location.href='/projektErstellen'">Neues Projekt erstellen</button>
     </div>
-    <button class="back-button" onclick="window.location.href='index.html'">Zurück zur Startseite</button>
+    <button class="back-button" onclick="window.location.href='/index'">Zurück zur Startseite</button>
 
     <table>
         <thead>
@@ -159,7 +159,7 @@
     }
 
     async function editProject(id) {
-        window.location.href = `projektBearbeiten.html?id=${id}`;
+        window.location.href = `/projektBearbeiten?id=${id}`;
     }
 
     async function deleteProject(id) {

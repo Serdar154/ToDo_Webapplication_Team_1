@@ -10,15 +10,24 @@ public class MvcConfig implements WebMvcConfigurer {
 
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
-        // Hier kannst du zusätzliche View-Controller registrieren, wenn benötigt.
+        // Stellt sicher, dass die HTML-Seiten über die entsprechenden Routen erreichbar sind
+        registry.addViewController("/").setViewName("index"); // Startseite
+        registry.addViewController("/index").setViewName("index"); // Zusätzliches Mapping für /index
+        registry.addViewController("/projektverwaltung").setViewName("projektverwaltung");
+        registry.addViewController("/projektErstellen").setViewName("projektErstellen");
+        registry.addViewController("/projektBearbeiten").setViewName("projektBearbeiten");
+        registry.addViewController("/lernplanverwaltung").setViewName("lernplanverwaltung");
+        registry.addViewController("/to-dos").setViewName("to-dos");
+        registry.addViewController("/kalender").setViewName("kalender");
     }
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/**") // Erlaubt CORS für alle Endpunkte
-                .allowedOrigins("http://localhost:63342") // Ersetze durch die URL deiner Frontend-Anwendung
-                .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
-                .allowedHeaders("*")
-                .allowCredentials(true);
+        // Konfiguriert CORS, damit Anfragen von http://localhost:8080 zugelassen werden
+        registry.addMapping("/**")
+                .allowedOrigins("http://localhost:8080") // Erlaubt Anfragen von diesem Origin
+                .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS") // Erlaubt diese HTTP-Methoden
+                .allowedHeaders("*") // Erlaubt alle Header
+                .allowCredentials(true); // Erlaubt das Senden von Cookies/Session-Informationen
     }
 }
